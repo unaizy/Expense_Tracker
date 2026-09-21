@@ -1,33 +1,26 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
+import { Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import AddTransactionPage from "./pages/AddTransactionPage";
+import Reports from "./pages/Reports";
+import Settings from "./pages/Settings";
 
 function App() {
-  const token = localStorage.getItem('userToken');
-
   return (
-    <Router>
-      <Routes>
-        {/* Default route → Register */}
-        <Route path="/" element={<Navigate to="/register" />} />
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
 
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/add-transaction" element={<ProtectedRoute><AddTransactionPage /></ProtectedRoute>} />
+      <Route path="/reports" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
 
-        {/* Protected route for dashboard */}
-        <Route
-          path="/dashboard"
-          element={
-            token ? <Dashboard /> : <Navigate to="/login" />
-          }
-        />
-
-        {/* Catch all */}
-        <Route path="*" element={<Navigate to="/register" />} />
-      </Routes>
-    </Router>
+      {/* Default route */}
+      <Route path="*" element={<Navigate to="/login" />} />
+    </Routes>
   );
 }
 

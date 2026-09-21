@@ -1,11 +1,10 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
@@ -14,51 +13,37 @@ import {
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
 );
 
 const SummaryChart = ({ transactions }) => {
-  // Process transactions data for the chart
-  const processData = () => {
-    const dates = [...new Set(transactions.map(t => 
-      new Date(t.date).toLocaleDateString()
-    ))].sort();
-
-    const incomeData = dates.map(date => {
-      return transactions
-        .filter(t => new Date(t.date).toLocaleDateString() === date && t.type === 'income')
-        .reduce((acc, curr) => acc + curr.amount, 0);
-    });
-
-    const expenseData = dates.map(date => {
-      return transactions
-        .filter(t => new Date(t.date).toLocaleDateString() === date && t.type === 'expense')
-        .reduce((acc, curr) => acc + curr.amount, 0);
-    });
-
-    return { dates, incomeData, expenseData };
-  };
-
-  const { dates, incomeData, expenseData } = processData();
+  const categories = [...new Set(transactions.map(transaction => transaction.category))].sort();
+  const incomeData = categories.map(category => transactions
+    .filter(transaction => transaction.category === category && transaction.type === 'income')
+    .reduce((total, transaction) => total + transaction.amount, 0));
+  const expenseData = categories.map(category => transactions
+    .filter(transaction => transaction.category === category && transaction.type === 'expense')
+    .reduce((total, transaction) => total + transaction.amount, 0));
 
   const data = {
-    labels: dates,
+    labels: categories,
     datasets: [
       {
         label: 'Income',
         data: incomeData,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
+        backgroundColor: '#35d39a',
+        borderRadius: 6,
+        maxBarThickness: 28,
       },
       {
         label: 'Expenses',
         data: expenseData,
-        borderColor: 'rgb(255, 99, 132)',
-        tension: 0.1,
+        backgroundColor: '#ff7183',
+        borderRadius: 6,
+        maxBarThickness: 28,
       },
     ],
   };
@@ -67,23 +52,39 @@ const SummaryChart = ({ transactions }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top',
+        position: 'bottom',
+        labels: { color: '#b8bfd4', usePointStyle: true, padding: 18 },
       },
       title: {
         display: true,
-        text: 'Income vs Expenses',
+        text: 'Income and expenses by category',
+        color: '#f4f5fb',
+        align: 'start',
+        font: { size: 16, weight: '600' },
       },
+      tooltip: { callbacks: { label: context => ` ₹${context.parsed.y.toLocaleString()}` } },
     },
     scales: {
+      x: { ticks: { color: '#8f96ad' }, grid: { display: false } },
       y: {
         beginAtZero: true,
+        ticks: { color: '#8f96ad', callback: value => `₹${value.toLocaleString()}` },
+        grid: { color: 'rgba(143, 150, 173, 0.14)' },
       },
     },
   };
 
   return (
     <div className="summary-chart">
-      <Line data={data} options={options} />
+      <div className="chart-heading">
+        <p className="eyebrow">Spending map</p>
+        <span>{transactions.length} {transactions.length === 1 ? 'entry' : 'entries'}</span>
+      </div>
+      {categories.length === 0 ? (
+        <div className="chart-empty">Add a transaction to see your spending map.</div>
+      ) : (
+        <Bar data={data} options={options} />
+      )}
     </div>
   );
 };

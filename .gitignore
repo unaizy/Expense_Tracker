@@ -1,0 +1,23 @@
+﻿# dependencies
+node_modules/
+**/node_modules/
+
+# environment files
+.env
+**/.env
+.env.*
+
+# build artifacts
+build/
+**/build/
+dist/
+**/dist/
+coverage/
+
+# caches
+**/.cache/
+**/.eslintcache
+
+# OS files
+.DS_Store
+Thumbs.db

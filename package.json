@@ -1,0 +1,10 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npm --prefix frontend start",
+    "backend": "npm --prefix backend run dev",
+    "build": "npm --prefix frontend run build"
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
+import "../pages/styles/login-register.css";   // ✅ FIXED PATH
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -16,80 +17,64 @@ const Register = () => {
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await api.post('/auth/register', formData);
-      console.log('Registration response:', response);
-
-      if (response.data) {
-        // ✅ Registration successful → go to login page
-        navigate('/login');
-      } else {
-        setError('Invalid response from server');
-      }
+      navigate('/login');
     } catch (error) {
-      console.error('Registration error:', error);
-      if (error.response) {
-        setError(error.response.data?.message || `Server error: ${error.response.status}`);
-      } else if (error.request) {
-        setError('No response from server. Please check if the backend server is running.');
-      } else {
-        setError('Error setting up the request: ' + error.message);
-      }
+      setError(error.response?.data?.message || 'Registration failed');
     }
   };
 
   return (
-    <div className="auth-container">
-      <h2>Register</h2>
-      {error && <div className="error-message">{error}</div>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
+    <div className="auth-page">
+      <div className="auth-container">
+
+        <h2>Register</h2>
+        {error && <div className="error-message">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
           <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
+          <input 
+            type="text" 
+            name="name" 
+            value={formData.name} 
+            onChange={handleChange} 
+            required 
           />
-        </div>
-        <div className="form-group">
+
           <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
+          <input 
+            type="email" 
+            name="email" 
+            value={formData.email} 
+            onChange={handleChange} 
+            required 
           />
-        </div>
-        <div className="form-group">
+
           <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
+          <input 
+            type="password" 
+            name="password" 
+            value={formData.password} 
+            onChange={handleChange} 
+            required 
           />
+
+          <button type="submit">Register</button>
+        </form>
+
+        <div className="auth-footer">
+          <p>
+            Already have an account?
+            <button onClick={redirectToLogin} className="link-button">Login</button>
+          </p>
         </div>
-        <button type="submit">Register</button>
-      </form>
-      <div className="auth-footer">
-        <p>
-          Already have an account?{' '}
-          <button onClick={redirectToLogin} className="link-button">
-            Login
-          </button>
-        </p>
+
       </div>
     </div>
   );
