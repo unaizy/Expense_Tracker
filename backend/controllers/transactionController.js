@@ -1,3 +1,4 @@
+```javascript
 const Transaction = require('../models/Transaction');
 
 // @desc    Get user transactions
@@ -5,7 +6,10 @@ const Transaction = require('../models/Transaction');
 // @access  Private
 const getTransactions = async (req, res) => {
   try {
-    const transactions = await Transaction.find({ user: req.user._id }).sort({ date: -1 });
+    const transactions = await Transaction.find({ user: req.user._id }).sort({
+      date: -1,
+    });
+
     res.json(transactions);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
@@ -50,7 +54,9 @@ const deleteTransaction = async (req, res) => {
       return res.status(401).json({ message: 'User not authorized' });
     }
 
-    await transaction.remove();
+    // Delete the transaction
+    await Transaction.findByIdAndDelete(req.params.id);
+
     res.json({ message: 'Transaction removed' });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
@@ -62,3 +68,4 @@ module.exports = {
   addTransaction,
   deleteTransaction,
 };
+```
