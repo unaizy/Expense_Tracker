@@ -4,7 +4,10 @@ A full-stack **Expense Tracker web application** built using the MERN stack. The
 
 ## 🌐 Live Demo
 
-**Coming soon**
+🚀 **[Open Expense Tracker](https://expense-tracker-frontend-kxmy.onrender.com)**
+
+The application is deployed and available online.
+
 
 ## 📂 GitHub Repository
 
