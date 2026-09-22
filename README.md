@@ -1,6 +1,6 @@
 # 💰 Expense Tracker
 
-A full-stack **Expense Tracker web application** built using the MERN stack. The application allows users to securely manage their income and expenses, view financial summaries, and keep their transaction data stored in MongoDB.
+A full-stack **MERN Expense Tracker** that allows users to securely manage income and expenses, view financial summaries, and store transaction data in MongoDB.
 
 ## 🌐 Live Demo
 
@@ -8,10 +8,9 @@ A full-stack **Expense Tracker web application** built using the MERN stack. The
 
 The application is deployed and available online.
 
-
 ## 📂 GitHub Repository
 
-https://github.com/unaizy/Expense_Tracker
+**[View Source Code](https://github.com/unaizy/Expense_Tracker)**
 
 ## ✨ Features
 
@@ -23,8 +22,8 @@ https://github.com/unaizy/Expense_Tracker
 * 📊 Income, expense, and balance summaries
 * 📈 Financial summary chart
 * 💾 Persistent data storage with MongoDB
-* 👤 User-specific transactions
-* 🔄 Data remains available after logging out and logging back in
+* 👤 User-specific transaction data
+* 🔄 Transactions remain available after logout and login
 * 📱 Responsive dashboard interface
 
 ## 🛠️ Technologies Used
@@ -63,19 +62,23 @@ Expense_Tracker/
 │   ├── models/
 │   ├── routes/
 │   ├── server.js
-│   ├── package.json
-│   └── .env
+│   └── package.json
 │
 ├── frontend/
 │   ├── public/
 │   ├── src/
-│   ├── package.json
-│   └── ...
+│   └── package.json
+│
+├── screenshots/
+│   ├── login.png
+│   ├── dashboard.png
+│   ├── add-transaction.png
+│   └── reports.png
 │
 └── README.md
 ```
 
-> `.env` files are excluded from GitHub using `.gitignore`.
+> `.env` files and `node_modules` are excluded from the repository using `.gitignore`.
 
 ## 🔐 Authentication
 
@@ -95,6 +98,24 @@ Users can:
 The application uses **MongoDB Atlas** to store user accounts and transactions.
 
 Each transaction is associated with its respective authenticated user, ensuring that users access their own transaction data.
+
+## 📸 Screenshots
+
+### 🔐 Login
+
+![Login](screenshots/login.png)
+
+### 📊 Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### ➕ Add Transaction
+
+![Add Transaction](screenshots/add-transaction.png)
+
+### 📄 Reports
+
+![Reports](screenshots/reports.png)
 
 ## 🚀 Running the Project Locally
 
@@ -118,6 +139,12 @@ npm install
 npm start
 ```
 
+The backend will run at:
+
+```text
+http://localhost:5000
+```
+
 ### 4. Start the frontend
 
 Open another terminal:
@@ -134,17 +161,9 @@ The React application will normally run at:
 http://localhost:3000
 ```
 
-The backend will normally run at:
-
-```text
-http://localhost:5000
-```
-
 ## 🔑 Environment Variables
 
-Create a `.env` file inside the `backend` folder.
-
-Example:
+Create a `.env` file inside the `backend` folder:
 
 ```env
 PORT=5000
@@ -154,17 +173,13 @@ JWT_SECRET=your_jwt_secret
 
 **Never upload your actual `.env` file or database credentials to GitHub.**
 
-## 📸 Screenshots
-
-Screenshots of the application will be added here.
-
 ## 👨‍💻 Author
 
-**Unaiz Y**
+### Unaiz Y
 
 Computer Science Engineering Student
 
-GitHub:
+**GitHub:**
 https://github.com/unaizy
 
 ---
