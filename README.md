@@ -1,127 +1,169 @@
-# 💰 Personal Expense Tracker
+# 💰 Expense Tracker
 
-A full-stack personal finance management application built using the **MERN stack**.
+A full-stack **Expense Tracker web application** built using the MERN stack. The application allows users to securely manage their income and expenses, view financial summaries, and keep their transaction data stored in MongoDB.
 
-The application allows users to securely manage their income and expenses, view their financial balance, analyze transactions, and manage their account through an easy-to-use dashboard.
+## 🌐 Live Demo
 
----
+**Coming soon**
 
-## 🚀 Features
+## 📂 GitHub Repository
 
-### 🔐 Authentication & Security
-- User registration and login
-- JWT-based authentication
-- Protected routes
-- Secure password hashing using bcrypt
-- User-specific data access
-- Change password functionality
+https://github.com/unaizy/Expense_Tracker
 
-### 💰 Transaction Management
-- Add income transactions
-- Add expense transactions
-- View transaction history
-- Delete transactions
-- Automatic income, expense, and balance calculations
+## ✨ Features
 
-### 📊 Dashboard
-- Total income
-- Total expenses
-- Current balance
-- Transaction history
-- Financial summary charts
-
-### 📈 Reports
-- Expense analysis
-- Income and expense summaries
-- Category-based spending information
-- Recent transaction overview
-
-### ⚙️ Settings
-- Update profile name
-- Update email address
-- Change password
-- Logout functionality
-
-### 💾 Data Persistence
-- MongoDB database
-- Persistent user accounts
-- Persistent transaction data
-- Data remains available after logout and login
-
----
+* 🔐 User registration and login
+* 🔑 JWT-based authentication
+* 💰 Add income and expense transactions
+* 🗑️ Delete transactions
+* 📋 View transaction history
+* 📊 Income, expense, and balance summaries
+* 📈 Financial summary chart
+* 💾 Persistent data storage with MongoDB
+* 👤 User-specific transactions
+* 🔄 Data remains available after logging out and logging back in
+* 📱 Responsive dashboard interface
 
 ## 🛠️ Technologies Used
 
 ### Frontend
 
-- React.js
-- React Router
-- Axios
-- Chart.js
-- JavaScript
-- HTML5
-- CSS3
+* React.js
+* React Router
+* Axios
+* Chart.js
+* CSS
 
 ### Backend
 
-- Node.js
-- Express.js
-- JWT
-- bcryptjs
-- REST API
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JSON Web Tokens (JWT)
+* bcryptjs
 
-### Database
+### Deployment
 
-- MongoDB
-- Mongoose
+* Render
+* MongoDB Atlas
+* GitHub
 
-### Development Tools
-
-- Visual Studio Code
-- Git
-- GitHub
-- MongoDB Compass
-
----
-
-## 📂 Project Structure
+## 🏗️ Project Structure
 
 ```text
-expenseTracker/
+Expense_Tracker/
 │
 ├── backend/
-│   ├── config/
-│   │   └── db.js
-│   │
 │   ├── controllers/
-│   │   └── authController.js
-│   │
 │   ├── middleware/
-│   │   └── authMiddleware.js
-│   │
 │   ├── models/
-│   │   └── User.js
-│   │
 │   ├── routes/
-│   │   ├── authRoutes.js
-│   │   └── transactionRoutes.js
-│   │
+│   ├── server.js
 │   ├── package.json
-│   ├── package-lock.json
-│   └── server.js
+│   └── .env
 │
 ├── frontend/
 │   ├── public/
-│   │
 │   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── App.js
-│   │   └── index.js
-│   │
 │   ├── package.json
-│   └── package-lock.json
+│   └── ...
 │
-├── .gitignore
 └── README.md
+```
+
+> `.env` files are excluded from GitHub using `.gitignore`.
+
+## 🔐 Authentication
+
+The application uses **JWT authentication** to protect user-specific transaction data.
+
+Users can:
+
+1. Create an account
+2. Log in securely
+3. Add transactions
+4. View their transaction history
+5. Delete transactions
+6. Log out and log back in while retaining their saved data
+
+## 💾 Database
+
+The application uses **MongoDB Atlas** to store user accounts and transactions.
+
+Each transaction is associated with its respective authenticated user, ensuring that users access their own transaction data.
+
+## 🚀 Running the Project Locally
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/unaizy/Expense_Tracker.git
+```
+
+### 2. Open the project
+
+```bash
+cd Expense_Tracker
+```
+
+### 3. Start the backend
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+### 4. Start the frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+The React application will normally run at:
+
+```text
+http://localhost:3000
+```
+
+The backend will normally run at:
+
+```text
+http://localhost:5000
+```
+
+## 🔑 Environment Variables
+
+Create a `.env` file inside the `backend` folder.
+
+Example:
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
+
+**Never upload your actual `.env` file or database credentials to GitHub.**
+
+## 📸 Screenshots
+
+Screenshots of the application will be added here.
+
+## 👨‍💻 Author
+
+**Unaiz Y**
+
+Computer Science Engineering Student
+
+GitHub:
+https://github.com/unaizy
+
+---
+
+⭐ If you find this project useful, consider giving the repository a star!
