@@ -1,4 +1,4 @@
-```javascript
+
 const Transaction = require('../models/Transaction');
 
 // @desc    Get user transactions
@@ -68,4 +68,4 @@ module.exports = {
   addTransaction,
   deleteTransaction,
 };
-```
+
